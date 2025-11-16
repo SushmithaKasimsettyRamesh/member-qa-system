@@ -4,7 +4,7 @@ Note: This project was developed as part of a coding task for evaluation purpose
 
 Overview
 
-This repository contains a simple question-answering system that allows users to ask natural-language questions about member data. The system fetches data from a public API, processes it, and provides answers using OpenAI's language models. The project includes a backend API and a Streamlit-based frontend for interactive use.
+This repository contains a question-answering system that allows users to ask natural-language questions about member data. The system fetches data from a public API, processes it, and provides answers using OpenAI's language models. It includes a backend API and a Streamlit frontend for interactive use.
 
 Features
 
@@ -28,7 +28,7 @@ Technologies Used
 
 FastAPI – Backend API server.
 
-Streamlit – Interactive web frontend for asking questions.
+Streamlit – Interactive frontend for question answering.
 
 OpenAI API – Language model for generating answers.
 
@@ -97,40 +97,56 @@ Data and Caching
 
 Messages are fetched from the public API and cached locally for faster responses.
 
-The /stats endpoint provides insights about the cached messages, including:
-
-Total number of messages
-
-Number of unique users
-
-Date range of messages
+The /stats endpoint provides insights about the cached messages, including total messages, unique users, and date range.
 
 Cache can be refreshed manually using the /refresh endpoint.
 
 Data Insights
 
-After analyzing the member messages dataset from the public API, several observations were made:
+Analysis of the member messages dataset revealed:
 
-Message completeness: Most messages include user names, message text, and timestamps. A small fraction had missing or empty fields.
+Message completeness: Most messages include user names, text, and timestamps, with occasional missing fields.
 
-User activity distribution: Some members are highly active, contributing multiple messages, while others have few or no messages.
+User activity distribution: Some members are highly active, while others have few messages.
 
-Timestamps consistency: Generally consistent, but a few entries appear out of chronological order.
+Timestamp consistency: Mostly consistent, with a few out-of-order entries.
 
-Duplicate entries: A few repeated messages from the same user were observed.
+Duplicate entries: A few repeated messages exist, slightly affecting statistics.
 
-Overall, the dataset is largely clean and usable, with minor inconsistencies typical in real-world data. These observations informed preprocessing and caching decisions to ensure reliable question-answering.
+The dataset is largely clean and usable, with minor inconsistencies typical in real-world data. These insights informed caching and question-answering logic.
+
+Design Notes / Approach
+
+Data fetching: Implemented a paginated API fetcher with caching to minimize repeated API calls and reduce latency.
+
+Question-answering engine: Uses OpenAI’s language models to process member messages and generate answers.
+
+Context formatting: Messages are formatted into a readable text block to provide context for AI inference.
+
+FastAPI backend: Handles /ask, /stats, and /refresh endpoints for reliable service.
+
+Streamlit frontend: Provides an interactive interface for exploring the system without coding.
+
+Error handling: Includes graceful fallbacks when messages are missing or the API is unavailable.
+
+Alternative approaches considered:
+
+Storing messages in a database for more advanced queries.
+
+Using embeddings or semantic search for more accurate question-answering.
+
+Ranking multiple candidate answers for improved relevance.
 
 Notes
 
-The system is designed for internal exploration and testing. Please do not reuse or redistribute the data without proper authorization.
+Designed for internal exploration and testing; do not reuse data or code without authorization.
 
-AI-generated answers depend on the available messages. Missing data may lead to fallback responses.
+AI answers depend on cached messages; missing data may result in fallback responses.
 
-All processing is done locally or via OpenAI’s API; no member data is stored externally.
+All processing occurs locally or via OpenAI’s API; no member data is stored externally.
 
 Optional Analysis
 
-You can analyze the dataset for anomalies or inconsistencies using the /stats endpoint or by inspecting cached messages.
+Dataset anomalies and statistics can be explored via /stats or by inspecting cached messages.
 
-Future enhancements could include improved data cleaning, ranking answers, or advanced analytics.
+Future improvements could include advanced analytics, better data cleaning, and answer ranking.
