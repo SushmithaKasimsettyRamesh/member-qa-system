@@ -1,3 +1,5 @@
+Note: This project was developed as part of a coding task for evaluation purposes. The implementation, design decisions, and code are my original work. The system is intended for demonstration and internal review only. Please do not reuse or redistribute the data or code without proper authorization.
+
 Member QA System
 
 This repository contains a simple question-answering system that allows users to ask natural-language questions about member data. The system fetches data from a public API, processes it, and provides answers using OpenAI's language models. The project includes a backend API and a Streamlit-based frontend.
