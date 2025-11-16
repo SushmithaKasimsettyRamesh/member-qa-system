@@ -101,6 +101,20 @@ Date range of messages
 
 Cache can be refreshed manually using the /refresh endpoint.
 
+Data Insights
+
+After analyzing the member messages dataset from the public API, several observations were made:
+
+Message completeness: Most messages include user names, message text, and timestamps. A small fraction of entries had missing or empty fields, indicating occasional incomplete submissions.
+
+User activity distribution: The dataset shows that some members are highly active, contributing multiple messages, while others have few or no messages. This uneven activity could impact question-answering coverage.
+
+Timestamps consistency: Message timestamps are generally consistent, but a few entries had unusual dates that appear out of chronological order. These may be due to system errors or delayed submissions.
+
+Duplicate entries: A few repeated messages from the same user were observed, which may slightly skew any aggregate statistics or insights.
+
+Overall, the dataset is largely clean and usable, with minor inconsistencies that are typical in real-world data. These observations informed the design of the question-answering system, ensuring that missing or inconsistent data does not break the service.
+
 Notes
 
 The system is designed for internal exploration and testing. Please do not reuse or redistribute the data without proper authorization.
