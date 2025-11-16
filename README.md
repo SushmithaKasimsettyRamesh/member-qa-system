@@ -1,8 +1,10 @@
-Note: This project was developed as part of a coding task for evaluation purposes. The implementation, design decisions, and code are my original work. The system is intended for demonstration and internal review only. Please do not reuse or redistribute the data or code without proper authorization.
-
 Member QA System
 
-This repository contains a simple question-answering system that allows users to ask natural-language questions about member data. The system fetches data from a public API, processes it, and provides answers using OpenAI's language models. The project includes a backend API and a Streamlit-based frontend.
+Note: This project was developed as part of a coding task for evaluation purposes. The implementation, design decisions, and code are my original work. The system is intended for demonstration and internal review only. Please do not reuse or redistribute the data or code without proper authorization.
+
+Overview
+
+This repository contains a simple question-answering system that allows users to ask natural-language questions about member data. The system fetches data from a public API, processes it, and provides answers using OpenAI's language models. The project includes a backend API and a Streamlit-based frontend for interactive use.
 
 Features
 
@@ -16,11 +18,11 @@ Interactive frontend built with Streamlit for easy exploration.
 
 Endpoints:
 
-/ask (POST) - Ask a question and receive an AI-generated answer.
+/ask (POST) – Ask a question and receive an AI-generated answer.
 
-/stats (GET) - View cached message statistics, including total messages and unique users.
+/stats (GET) – View cached message statistics, including total messages and unique users.
 
-/refresh (POST) - Force-refresh cached messages from the API.
+/refresh (POST) – Force-refresh cached messages from the API.
 
 Technologies Used
 
@@ -51,8 +53,10 @@ cd member-qa-system
 Create a virtual environment and install dependencies:
 
 python -m venv venv
-venv\Scripts\activate   # Windows
-source venv/bin/activate # macOS/Linux
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
 
 pip install -r requirements.txt
 
@@ -68,16 +72,18 @@ Start the backend API:
 uvicorn app.app_main:app --reload
 
 
-The API will run on http://localhost:8000.
+The API will run on http://localhost:8000
+.
 
 Start the Streamlit frontend:
 
 streamlit run streamlit_app.py
 
 
-The frontend will run on http://localhost:8502 by default.
+The frontend will run on http://localhost:8502
+ by default.
 
-Ask natural-language questions, such as:
+Ask natural-language questions such as:
 
 When is Layla planning her trip to London
 
@@ -91,7 +97,7 @@ Data and Caching
 
 Messages are fetched from the public API and cached locally for faster responses.
 
-/stats endpoint provides insights about the cached messages, including:
+The /stats endpoint provides insights about the cached messages, including:
 
 Total number of messages
 
@@ -105,26 +111,26 @@ Data Insights
 
 After analyzing the member messages dataset from the public API, several observations were made:
 
-Message completeness: Most messages include user names, message text, and timestamps. A small fraction of entries had missing or empty fields, indicating occasional incomplete submissions.
+Message completeness: Most messages include user names, message text, and timestamps. A small fraction had missing or empty fields.
 
-User activity distribution: The dataset shows that some members are highly active, contributing multiple messages, while others have few or no messages. This uneven activity could impact question-answering coverage.
+User activity distribution: Some members are highly active, contributing multiple messages, while others have few or no messages.
 
-Timestamps consistency: Message timestamps are generally consistent, but a few entries had unusual dates that appear out of chronological order. These may be due to system errors or delayed submissions.
+Timestamps consistency: Generally consistent, but a few entries appear out of chronological order.
 
-Duplicate entries: A few repeated messages from the same user were observed, which may slightly skew any aggregate statistics or insights.
+Duplicate entries: A few repeated messages from the same user were observed.
 
-Overall, the dataset is largely clean and usable, with minor inconsistencies that are typical in real-world data. These observations informed the design of the question-answering system, ensuring that missing or inconsistent data does not break the service.
+Overall, the dataset is largely clean and usable, with minor inconsistencies typical in real-world data. These observations informed preprocessing and caching decisions to ensure reliable question-answering.
 
 Notes
 
 The system is designed for internal exploration and testing. Please do not reuse or redistribute the data without proper authorization.
 
-AI-generated answers depend on the available messages. If data is missing, the system will return a polite fallback response.
+AI-generated answers depend on the available messages. Missing data may lead to fallback responses.
 
 All processing is done locally or via OpenAI’s API; no member data is stored externally.
 
 Optional Analysis
 
-You can analyze the dataset for anomalies or inconsistencies using the /stats endpoint or by inspecting the cached messages.
+You can analyze the dataset for anomalies or inconsistencies using the /stats endpoint or by inspecting cached messages.
 
-Future enhancements may include better data cleaning, ranking answers, or advanced analytics.
+Future enhancements could include improved data cleaning, ranking answers, or advanced analytics.
